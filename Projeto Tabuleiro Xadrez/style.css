@@ -1,0 +1,263 @@
+/* Configurações Globais */
+:root {
+    --cor-clara: #f0d9b5; /* Bege Claro */
+    --cor-escura: #b58863; /* Marrom Escuro */
+    --cor-fundo: #2c3e50; /* Azul Escuro */
+    --cor-painel: #34495e; /* Cinza Chumbo */
+    --cor-texto: #ecf0f1; /* Branco Gelo */
+    --tamanho-casa: 70px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container Principal */
+.container {
+    max-width: 1300px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--cor-painel);
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.datetime {
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+/* Estrutura do Jogo */
+.game-container {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+/* Painel de Controle (Lateral) */
+.control-panel {
+    flex-basis: 300px; /* Largura do painel */
+    padding: 15px;
+    background-color: #2c3e50;
+    border-radius: 8px;
+    align-self: flex-start;
+}
+
+.control-panel > div {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.control-panel h3 {
+    margin-top: 0;
+    color: #f1c40f; /* Amarelo */
+    border-bottom: 1px solid rgba(241, 196, 15, 0.3);
+    padding-bottom: 5px;
+}
+
+/* Botões e Formulários */
+.control-panel button, .control-panel select {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+#btn-pvp, #btn-pve {
+    background-color: #3498db; /* Azul */
+    color: white;
+}
+
+#new-game {
+    background-color: #e74c3c; /* Vermelho */
+    color: white;
+}
+
+#reset-stats {
+    background-color: #95a5a6; /* Cinza */
+    color: white;
+}
+
+#difficulty {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    appearance: none; /* Remove estilo nativo do select */
+}
+
+/* Informações da Partida */
+.game-info div {
+    padding: 5px 0;
+}
+
+.turn {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.timer {
+    font-size: 2em;
+    color: #2ecc71; /* Verde */
+}
+
+.status {
+    min-height: 40px; /* Garante que o status tenha espaço */
+    color: #f1c40f;
+}
+
+/* TABULEIRO */
+.chess-board {
+    /* Define o layout Grid para o tabuleiro 8x8 */
+    display: grid;
+    grid-template-columns: repeat(8, var(--tamanho-casa));
+    grid-template-rows: repeat(8, var(--tamanho-casa));
+    width: calc(8 * var(--tamanho-casa));
+    height: calc(8 * var(--tamanho-casa));
+    border: 8px solid var(--cor-escura);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Estilo das Casas */
+.casa {
+    width: var(--tamanho-casa);
+    height: var(--tamanho-casa);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px; 
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.1s;
+}
+
+.casa.branca {
+    background-color: var(--cor-clara);
+}
+
+.casa.preta {
+    background-color: var(--cor-escura);
+}
+
+/* Estilo das Peças (Unicode) */
+.peca {
+    /* O JS adicionará esta classe para estilizar os caracteres unicode */
+    font-weight: normal;
+}
+
+.peca.white {
+    color: white;
+    text-shadow: 1px 1px 2px #333;
+}
+
+.peca.black {
+    color: black;
+    text-shadow: 1px 1px 2px #fff;
+}
+
+/* Efeitos de Interação */
+.casa:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.highlight-select {
+    box-shadow: inset 0 0 0 5px #3498db; /* Azul de seleção */
+}
+
+.highlight-move {
+    background-color: rgba(46, 204, 113, 0.7); /* Verde para movimento legal */
+}
+
+/* Efeito para a última jogada (da máquina ou jogador) */
+.last-move {
+    background-color: #f1c40f !important; /* Amarelo para destacar */
+    opacity: 0.8;
+}
+
+/* Histórico de Partidas */
+.game-history {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.history-list {
+    max-height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #2c3e50;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    /* Estilo para a lista de lances */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.history-list p {
+    margin: 0;
+    padding: 5px 10px;
+    background-color: #34495e;
+    border-radius: 3px;
+    font-size: 0.9em;
+}
+
+
+/* Responsividade para telas menores */
+@media (max-width: 1000px) {
+    .game-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .chess-board {
+        /* Ajusta o tamanho do tabuleiro para caber na tela */
+        width: 90vw; 
+        height: 90vw;
+        max-width: 560px;
+        max-height: 560px;
+        grid-template-columns: repeat(8, 1fr);
+        grid-template-rows: repeat(8, 1fr);
+    }
+    .casa {
+        font-size: 6vw; /* Ajusta o tamanho da peça */
+    }
+    .control-panel {
+        width: 100%;
+    }
+}
+
+@media (max-width: 500px) {
+    body {
+        padding: 10px;
+    }
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .datetime {
+        margin-top: 5px;
+        font-size: 0.9em;
+    }
+}
