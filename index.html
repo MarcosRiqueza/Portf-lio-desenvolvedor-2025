@@ -51,6 +51,32 @@
             background-size: cover; background-position: center;
         }
         
+        /* Seletor de idiomas */
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 10;
+            display: flex;
+            gap: 5px;
+        }
+        
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
         header h1 { font-size: 3rem; margin-bottom: 10px; position: relative; z-index: 1; }
         header p { font-size: 1.5rem; color: var(--primary-color); position: relative; z-index: 1; }
         
@@ -167,7 +193,6 @@
         .project-link.live { background-color: var(--success-color); border-color: var(--success-color); color: white; }
         .project-link.live:hover { background-color: #218838; }
         
-        /* Botão de Jogar (Destaque) */
         .project-link.play-game { 
             background: linear-gradient(45deg, var(--warning-color), #ff8c00); 
             border-color: var(--warning-color); 
@@ -234,6 +259,9 @@
         .contact-item h3 { margin-bottom: 10px; color: var(--primary-color); }
         .contact-item a { color: var(--light-color); text-decoration: none; transition: color 0.3s ease; }
         .contact-item a:hover { color: var(--primary-color); }
+
+        .video-container { margin: 15px 0; width: 100%; border-radius: 8px; overflow: hidden; border: 1px solid var(--card-border); }
+        .video-container video { width: 100%; display: block; }
         
         footer { text-align: center; padding: 40px 0; background-color: rgba(0, 0, 0, 0.5); margin-top: 60px; border-top: 1px solid var(--card-border); }
         
@@ -248,235 +276,244 @@
             .project-links { flex-direction: column; }
             .projeto-meta { flex-direction: column; align-items: flex-start; gap: 10px; }
             .courses-grid { grid-template-columns: 1fr; }
+            .language-selector { position: relative; top: 0; right: 0; margin-bottom: 15px; justify-content: center; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
+            <!-- Seletor de Idiomas -->
+            <div class="language-selector">
+                <button class="lang-btn active" onclick="changeLanguage('pt')">PT</button>
+                <button class="lang-btn" onclick="changeLanguage('en')">EN</button>
+                <button class="lang-btn" onclick="changeLanguage('es')">ES</button>
+            </div>
+
             <h1>Marcos Roberto da Silva</h1>
-            <p>Desenvolvedor Web</p>
+            <p data-translate="header_subtitle">Desenvolvedor Web & Full-Stack</p>
         </header>
 
         <nav aria-label="Menu Principal">
             <ul>
-                <li><a href="#sobre">Sobre</a></li>
-                <li><a href="#projetos">Projetos</a></li>
-                <li><a href="#jornada">Minha Jornada</a></li>
-                <li><a href="#formacao">Formação</a></li>
-                <li><a href="#habilidades">Habilidades</a></li>
-                <li><a href="#contato">Contato</a></li>
+                <li><a href="#sobre" data-translate="nav_about">Sobre</a></li>
+                <li><a href="#projetos" data-translate="nav_projects">Projetos</a></li>
+                <li><a href="#jornada" data-translate="nav_journey">Minha Jornada</a></li>
+                <li><a href="#formacao" data-translate="nav_education">Formação</a></li>
+                <li><a href="#habilidades" data-translate="nav_skills">Habilidades</a></li>
+                <li><a href="#contato" data-translate="nav_contact">Contato</a></li>
             </ul>
         </nav>
 
         <main>
             <section id="sobre" class="fade-in">
-                <h2>Sobre Mim</h2>
+                <h2 data-translate="about_title">Sobre Mim</h2>
                 <div class="perfil-container">
                     <img src="Foto.jpg" alt="Foto de Marcos Roberto da Silva" class="perfil" />
                 </div>
-                <p>Olá! Sou um desenvolvedor Web em transição de carreira, com mais de 15 anos de experiência em hotelaria internacional, aeroportos e navios de cruzeiro.</p>
-                <p>Com inglês intermediário/avançado adquirido em curso formal de 3 anos e comprovado em experiências internacionais, combino expertise técnica em HTML, CSS, JavaScript, Python, Java e Inteligência Artificial com soft skills desenvolvidas em ambientes de alto padrão internacional.</p>
-                <p>Minha jornada me proporcionou habilidades únicas em atendimento ao cliente, trabalho sob pressão e adaptabilidade multicultural, que agora aplico no desenvolvimento de soluções web inovadoras.</p>
+                <p data-translate="about_p1">Olá! Sou um desenvolvedor Web e Full-Stack em transição de carreira, com mais de 15 anos de experiência em hotelaria internacional, aeroportos e navios de cruzeiro.</p>
+                <p data-translate="about_p2">Com inglês intermediário/avançado adquirido em curso formal de 3 anos e comprovado em experiências internacionais, combino expertise técnica em HTML, CSS, JavaScript, Python, Java, C#, Banco de Dados SQL e Inteligência Artificial com soft skills desenvolvidas em ambientes de alto padrão internacional.</p>
+                <p data-translate="about_p3">Minha jornada me proporcionou habilidades únicas em atendimento ao cliente, trabalho sob pressão e adaptabilidade multicultural, que agora aplico no desenvolvimento de soluções web e de software inovadoras.</p>
             </section>
 
             <section id="projetos">
-                <h2>Meus Projetos</h2>                
+                <h2 data-translate="projects_title">Meus Projetos</h2>                
                 
-                <h3 style="text-align: center; margin: 50px 0 30px; color: var(--success-color);">🚀 Projetos Concluídos & Entregues</h3>
+                <h3 style="text-align: center; margin: 50px 0 30px; color: var(--success-color);" data-translate="projects_completed">🚀 Projetos Concluídos & Entregues</h3>
                 <div class="projetos-grid">
                     
-                    <!-- PortalMark.Tech -->
+                    <!-- Creatures of the Night (C#) -->
                     <article class="projeto-card fade-in">
-                        <div class="projeto-badge badge-completed">CONCLUÍDO</div>
+                        <div class="projeto-badge badge-completed" data-translate="badge_completed">CONCLUÍDO</div>
                         <div class="placeholder-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
                             <div class="placeholder-content">
-                                <i class="fas fa-globe"></i>
-                                <div>PortalMark.Tech</div>
-                                <small>Portal de Tecnologia</small>
+                                <i class="fas fa-ghost"></i>
+                                <div>Creatures of the Night</div>
                             </div>
                         </div>
                         <div class="projeto-content">
-                            <h3>PortalMark.Tech</h3>
+                            <h3>Creatures of the Night</h3>
                             <div class="projeto-meta">
-                                <span class="projeto-type">Projeto Pessoal</span>
-                                <span>Desenvolvimento Contínuo</span>
+                                <span class="projeto-type" data-translate="type_personal">Projeto Pessoal</span>
+                                <span data-translate="meta_game_csharp">Game Dev / C#</span>
                             </div>
-                            <p>Portal completo de tecnologia com agregação de serviços web, ferramentas de produtividade e recursos para desenvolvedores. Interface moderna e responsiva.</p>
+                            <p data-translate="desc_creatures">Jogo de plataforma 2D com temática de terror. Desenvolvido do zero usando C# (MonoGame) para a lógica de física, colisão, inteligência artificial dos inimigos e sistema de áudio. Inclui uma demo jogável em vídeo.</p>
                             <div class="tech-badges">
-                                <span class="tech-badge">HTML5</span>
-                                <span class="tech-badge">CSS3</span>
-                                <span class="tech-badge">JavaScript</span>
-                                <span class="tech-badge">UI/UX Design</span>
+                                <span class="tech-badge">C#</span>
+                                <span class="tech-badge">MonoGame</span>
+                                <span class="tech-badge">POO</span>
+                                <span class="tech-badge">Game Loop</span>
+                            </div>
+                            
+                                                        <!-- Vídeo de Demo do Jogo -->
+                            <div class="video-container">
+                                <video controls poster="capa-creatures.jpg">
+                                    <!-- O arquivo deve estar na mesma pasta do index.html e se chamar creatures.mp4 -->
+                                    <source src="creatures.mp4" type="video/mp4">
+                                    O seu navegador não suporta a exibição de vídeos.
+                                </video>
                             </div>
                             <div class="project-links">
-                                <a href="https://portalmarktech.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link live">Site Online</a>
-                                <a href="https://github.com/MarcosRiqueza/PortalMark.tech" target="_blank" rel="noopener noreferrer" class="project-link">Código GitHub</a>
+                                <a href="https://github.com/MarcosRiqueza" target="_blank" rel="noopener noreferrer" class="project-link" data-translate="btn_code">Repositório (Em Breve)</a>
                             </div>
                         </div>
                     </article>
 
                     <!-- Gisele Cacau Turismo -->
                     <article class="projeto-card fade-in">
-                        <div class="projeto-badge badge-completed">ENTREGUE</div>
+                        <div class="projeto-badge badge-completed" data-translate="badge_delivered">ENTREGUE</div>
                         <div class="placeholder-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
                             <div class="placeholder-content">
                                 <i class="fas fa-map-marked-alt"></i>
                                 <div>Gisele Cacau</div>
-                                <small>Guia de Turismo</small>
                             </div>
                         </div>
                         <div class="projeto-content">
                             <h3>Gisele Cacau Turismo</h3>
                             <div class="projeto-meta">
-                                <span class="projeto-type">Cliente Real</span>
-                                <span>Jun 2025 • 3 semanas</span>
+                                <span class="projeto-type" data-translate="type_client">Cliente Real</span>
+                                <span data-translate="meta_gisele">Jun 2025 • 3 semanas</span>
                             </div>
-                            <p>Site institucional profissional para guia de turismo e recreacionista. Design elegante com foco em conversão e apresentação de serviços turísticos personalizados.</p>
+                            <p data-translate="desc_gisele">Site institucional profissional para guia de turismo e recreacionista. Design elegante com foco em conversão e apresentação de serviços turísticos personalizados.</p>
                             <div class="tech-badges">
                                 <span class="tech-badge">HTML5</span>
                                 <span class="tech-badge">CSS3</span>
                                 <span class="tech-badge">JavaScript</span>
-                                <span class="tech-badge">SEO Otimizado</span>
+                                <span class="tech-badge">SEO</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://giselecacauguiaturismo.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link live">Site Online</a>
-                                <a href="https://github.com/MarcosRiqueza/Gisele-Cacau---Guia-de-Turismo-e-Recrea-o-" target="_blank" rel="noopener noreferrer" class="project-link">Código GitHub</a>
+                                <a href="https://giselecacauguiaturismo.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link live" data-translate="btn_live">Site Online</a>
+                                <a href="https://github.com/MarcosRiqueza/Gisele-Cacau---Guia-de-Turismo-e-Recrea-o-" target="_blank" rel="noopener noreferrer" class="project-link" data-translate="btn_code">Código GitHub</a>
                             </div>
                         </div>
                     </article>
 
                     <!-- JSP Refrigeração -->
                     <article class="projeto-card fade-in">
-                        <div class="projeto-badge badge-completed">ENTREGUE</div>
+                        <div class="projeto-badge badge-completed" data-translate="badge_delivered">ENTREGUE</div>
                         <div class="placeholder-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
                             <div class="placeholder-content">
                                 <i class="fas fa-tools"></i>
                                 <div>JSP Refrigeração</div>
-                                <small>Assistência Técnica</small>
                             </div>
                         </div>
                         <div class="projeto-content">
                             <h3>JSP Refrigeração</h3>
                             <div class="projeto-meta">
-                                <span class="projeto-type">Cliente Real</span>
-                                <span>Set 2025 • 30 dias</span>
+                                <span class="projeto-type" data-translate="type_client">Cliente Real</span>
+                                <span data-translate="meta_jsp">Set 2025 • 30 dias</span>
                             </div>
-                            <p>Landing page profissional para empresa de assistência técnica em refrigeração. Foco em captação de clientes locais com design clean e call-to-action estratégico.</p>
+                            <p data-translate="desc_jsp">Landing page profissional para empresa de assistência técnica em refrigeração. Foco em captação de clientes locais com design clean e call-to-action estratégico.</p>
                             <div class="tech-badges">
                                 <span class="tech-badge">HTML5</span>
                                 <span class="tech-badge">CSS3</span>
                                 <span class="tech-badge">JavaScript</span>
-                                <span class="tech-badge">WhatsApp Integration</span>
+                                <span class="tech-badge">WhatsApp API</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://jsprassistenciatecnica.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link live">Site Online</a>
-                                <a href="https://github.com/MarcosRiqueza/jsprefrigera-o" target="_blank" rel="noopener noreferrer" class="project-link">Código GitHub</a>
+                                <a href="https://jsprassistenciatecnica.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link live" data-translate="btn_live">Site Online</a>
+                                <a href="https://github.com/MarcosRiqueza/jsprefrigera-o" target="_blank" rel="noopener noreferrer" class="project-link" data-translate="btn_code">Código GitHub</a>
                             </div>
                         </div>
                     </article>
 
                     <!-- Tabuleiro de Xadrez -->
                     <article class="projeto-card fade-in">
-                        <div class="projeto-badge badge-completed">CONCLUÍDO</div>
+                        <div class="projeto-badge badge-completed" data-translate="badge_completed">CONCLUÍDO</div>
                         <div class="placeholder-img" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);">
                             <div class="placeholder-content">
                                 <i class="fas fa-chess-board"></i>
                                 <div>Xadrez Web</div>
-                                <small>Jogo de Lógica</small>
                             </div>
                         </div>
                         <div class="projeto-content">
                             <h3>Tabuleiro de Xadrez Web</h3>
                             <div class="projeto-meta">
-                                <span class="projeto-type">Projeto Pessoal</span>
-                                <span>Lógica e IA</span>
+                                <span class="projeto-type" data-translate="type_personal">Projeto Pessoal</span>
+                                <span data-translate="meta_xadrez">Lógica e IA</span>
                             </div>
-                            <p>Jogo de xadrez completo jogável no navegador. Conta com modo Player vs Player (PvP), modo Player vs Máquina (PvE) com níveis de dificuldade e histórico de partidas.</p>
+                            <p data-translate="desc_xadrez">Jogo de xadrez completo jogável no navegador. Conta com modo Player vs Player (PvP), modo Player vs Máquina (PvE) com níveis de dificuldade e histórico de partidas.</p>
                             <div class="tech-badges">
                                 <span class="tech-badge">HTML5</span>
                                 <span class="tech-badge">CSS3</span>
-                                <span class="tech-badge">JavaScript Puro (script.js)</span>
+                                <span class="tech-badge">JavaScript</span>
                                 <span class="tech-badge">Lógica de Jogos</span>
                             </div>
                             
-                            <!-- Instruções de como jogar -->
-                            <div class="game-instructions" style="margin-top: 15px; margin-bottom: 15px;">
+                            <div class="game-instructions" style="margin-top: 15px; margin-bottom: 15px;" data-translate="inst_xadrez">
                                 <strong>💡 Como Jogar:</strong><br>
                                 Use apenas o <strong>mouse</strong> para clicar nas peças e movê-las. No menu lateral esquerdo, você pode escolher entre <strong>2 Jogadores (PvP)</strong> ou <strong>Vs Máquina (PvE)</strong>.
                             </div>
 
                             <div class="project-links">
-                                <!-- Link exato da pasta que está funcionando -->
-                                <a href="Projeto Tabuleiro Xadrez/xadrez.html" target="_blank" rel="noopener noreferrer" class="project-link play-game">
+                                <a href="Projeto Tabuleiro Xadrez/xadrez.html" target="_blank" rel="noopener noreferrer" class="project-link play-game" data-translate="btn_play">
                                     <i class="fas fa-gamepad"></i> Jogar Agora
                                 </a>
                             </div>
                         </div>
                     </article>
-                                      <!-- Seaquest Submarino -->
+                    
+                    <!-- Seaquest Submarino -->
                     <article class="projeto-card fade-in">
-                        <div class="projeto-badge badge-completed">CONCLUÍDO</div>
+                        <div class="projeto-badge badge-completed" data-translate="badge_completed">CONCLUÍDO</div>
                         <div class="placeholder-img" style="background: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);">
                             <div class="placeholder-content">
                                 <i class="fas fa-ship"></i>
                                 <div>Seaquest</div>
-                                <small>Jogo de Ação</small>
                             </div>
                         </div>
                         <div class="projeto-content">
                             <h3>Seaquest: Extreme Combat</h3>
                             <div class="projeto-meta">
-                                <span class="projeto-type">Projeto Pessoal</span>
-                                <span>Game Dev</span>
+                                <span class="projeto-type" data-translate="type_personal">Projeto Pessoal</span>
+                                <span data-translate="meta_seaquest">Game Dev</span>
                             </div>
-                            <p>Jogo de ação subaquática 2D desenvolvido com HTML5 Canvas. Inclui sistema de física, colisão, partículas de explosão, HUD de pontuação e 10 níveis com dificuldade progressiva.</p>
+                            <p data-translate="desc_seaquest">Jogo de ação subaquática 2D desenvolvido com HTML5 Canvas. Inclui sistema de física, colisão, partículas de explosão, HUD de pontuação e 10 níveis com dificuldade progressiva.</p>
                             <div class="tech-badges">
                                 <span class="tech-badge">HTML5 Canvas</span>
-                                <span class="tech-badge">JavaScript (ES6)</span>
+                                <span class="tech-badge">JavaScript</span>
                                 <span class="tech-badge">Game Loop</span>
                                 <span class="tech-badge">Renderização 2D</span>
                             </div>
                             
-                            <!-- Instruções de como jogar -->
-                            <div class="game-instructions" style="margin-top: 15px; margin-bottom: 15px;">
+                            <div class="game-instructions" style="margin-top: 15px; margin-bottom: 15px;" data-translate="inst_seaquest">
                                 <strong>💡 Como Jogar:</strong><br>
                                 Use as <strong>Setas (↑ ↓ ← →)</strong> para mover o submarino e a tecla <strong>ESPAÇO</strong> para atirar nos inimigos.
                             </div>
 
                             <div class="project-links">
-                                <a href="Projeto Submarino/seaquest.html" target="_blank" rel="noopener noreferrer" class="project-link play-game">
+                                <a href="Projeto Submarino/seaquest.html" target="_blank" rel="noopener noreferrer" class="project-link play-game" data-translate="btn_play">
                                     <i class="fas fa-rocket"></i> Jogar Agora
                                 </a>
                             </div>
                         </div>
                     </article>
+                    
                     <!-- Lessa Carretos -->
                     <article class="projeto-card fade-in">
-                        <div class="projeto-badge badge-completed">ENTREGUE</div>
+                        <div class="projeto-badge badge-completed" data-translate="badge_delivered">ENTREGUE</div>
                         <div class="placeholder-img" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);">
                             <div class="placeholder-content">
                                 <i class="fas fa-chart-line"></i>
                                 <div>Lessa Carretos</div>
-                                <small>Transportes e Serviços</small>
                             </div>
                         </div>
                         <div class="projeto-content">
                             <h3>Lessa Carretos</h3>
                             <div class="projeto-meta">
-                                <span class="projeto-type">Cliente Real</span>
-                                <span>Set 2026 • 07 dias</span>
+                                <span class="projeto-type" data-translate="type_client">Cliente Real</span>
+                                <span data-translate="meta_lessa">Set 2026 • 07 dias</span>
                             </div>
-                            <p>Página completa para prestação de serviços de transporte e fretes. Interface moderna focada em conversão de clientes e apresentação de serviços locais.</p>
+                            <p data-translate="desc_lessa">Página completa para prestação de serviços de transporte e fretes. Interface moderna focada em conversão de clientes e apresentação de serviços locais.</p>
                             <div class="tech-badges">
                                 <span class="tech-badge">HTML5</span>
                                 <span class="tech-badge">CSS3</span>
                                 <span class="tech-badge">JavaScript</span>
-                                <span class="tech-badge">Responsive Design</span>
+                                <span class="tech-badge">Responsive</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://empresalessacarretos.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link live">Site Online</a>
-                                <a href="https://github.com/MarcosRiqueza/elciolessamudan-a" target="_blank" rel="noopener noreferrer" class="project-link">Código GitHub</a>
+                                <a href="https://empresalessacarretos.netlify.app/" target="_blank" rel="noopener noreferrer" class="project-link live" data-translate="btn_live">Site Online</a>
+                                <a href="https://github.com/MarcosRiqueza/elciolessamudan-a" target="_blank" rel="noopener noreferrer" class="project-link" data-translate="btn_code">Código GitHub</a>
                             </div>
                         </div>
                     </article>
@@ -485,67 +522,40 @@
             </section>
 
             <section id="jornada">
-                <h2>Minha Jornada Profissional</h2>
+                <h2 data-translate="journey_title">Minha Jornada Profissional</h2>
                 <div class="journey-timeline">
                     
+                    <!-- Desenvolvedor Web -->
+                    <div class="journey-item tech fade-in">
+                        <div class="journey-header">
+                            <i class="fas fa-laptop-code journey-icon"></i>
+                            <h3 class="journey-title" data-translate="journey_dev">Desenvolvedor Web & Full-Stack</h3>
+                            <span class="journey-period">2024 - Presente</span>
+                        </div>
+                        <p class="journey-company">Projetos Independentes & Freelance</p>
+                        <p class="journey-description" data-translate="journey_dev_desc">Atuação como desenvolvedor com foco em criar experiências web modernas, APIs backend e lógica de jogos, sempre com excelente performance.</p>
+                        <ul class="journey-highlights">
+                            <li data-translate="journey_dev_li1">Desenvolvimento de aplicações web com HTML5, CSS3 e JavaScript</li>
+                            <li data-translate="journey_dev_li2">Desenvolvimento backend e games utilizando C#, Python, Java e Banco de Dados SQL</li>
+                            <li data-translate="journey_dev_li3">Criação de interfaces responsivas e focadas na experiência do usuário</li>
+                            <li data-translate="journey_dev_li4">Versionamento de código com Git e deploy em plataformas cloud</li>
+                        </ul>
+                    </div>
+
+                    <!-- Primeiros Clientes Freelance -->
                     <div class="journey-item freelance fade-in">
                         <div class="journey-header">
                             <i class="fas fa-briefcase journey-icon"></i>
-                            <h3 class="journey-title">Primeiros Clientes Freelance</h3>
+                            <h3 class="journey-title" data-translate="journey_freelance">Primeiros Clientes Freelance</h3>
                             <span class="journey-period">2024 - 2026</span>
                         </div>
                         <p class="journey-company">JSP Refrigeração, Gisele Cacau Turismo & Lessa Carretos</p>
-                        <p class="journey-description">Início da carreira como desenvolvedor freelance com projetos reais para clientes, entregando soluções web profissionais.</p>
+                        <p class="journey-description" data-translate="journey_freelance_desc">Início da carreira como desenvolvedor freelance com projetos reais para clientes, entregando soluções web profissionais.</p>
                         <ul class="journey-highlights">
-                            <li><strong>JSP Refrigeração</strong> - Site institucional desenvolvido em 30 dias (Set 2025)</li>
-                            <li><strong>Gisele Cacau Turismo</strong> - Site profissional entregue em 3 semanas (Jun 2025)</li>
-                            <li><strong>Lessa Carretos Transportes</strong> - Site profissional entregue em 07 dias (Set 2026)</li>
-                            <li>Gestão completa de projetos desde briefing até deploy</li>
-                        </ul>
-                    </div>
-
-                    <div class="journey-item fade-in">
-                        <div class="journey-header">
-                            <i class="fas fa-hotel journey-icon"></i>
-                            <h3 class="journey-title">Garçom de Eventos Corporativos</h3>
-                            <span class="journey-period">2016 - 2022 (6 anos)</span>
-                        </div>
-                        <p class="journey-company">Hotel Cabreúva Resort</p>
-                        <p class="journey-description">Atendimento especializado em eventos corporativos, buffets e confraternizações em resort premium.</p>
-                        <ul class="journey-highlights">
-                            <li>Identificação de preferências e necessidades dos hóspedes</li>
-                            <li>Gestão de cardápios e experiência gastronômica premium</li>
-                            <li>Manutenção de padrões de excelência em atendimento</li>
-                        </ul>
-                    </div>
-
-                    <div class="journey-item fade-in">
-                        <div class="journey-header">
-                            <i class="fas fa-plane journey-icon"></i>
-                            <h3 class="journey-title">Garçom & Host Bilíngue</h3>
-                            <span class="journey-period">2014 - 2016 (2 anos)</span>
-                        </div>
-                        <p class="journey-company">Great Food - Aeroporto de Guarulhos</p>
-                        <p class="journey-description">Atuação em ambiente aeroportuário de alto tráfego com atendimento bilíngue e gestão de clientes internacionais.</p>
-                        <ul class="journey-highlights">
-                            <li><strong>+100% de aumento no faturamento</strong> como Host Bilíngue</li>
-                            <li>Captação de clientes e apresentação de cardápios em inglês/português</li>
-                            <li>Gestão de sistema de pedidos e fechamento de contas</li>
-                        </ul>
-                    </div>
-
-                    <div class="journey-item fade-in">
-                        <div class="journey-header">
-                            <i class="fas fa-ship journey-icon"></i>
-                            <h3 class="journey-title">Mess Attendant</h3>
-                            <span class="journey-period">2008 (8 meses)</span>
-                        </div>
-                        <p class="journey-company">Royal Caribbean Cruises Lines - EUA</p>
-                        <p class="journey-description">Experiência internacional em navio de cruzeiro com atendimento multicultural e padrões de excelência internacional.</p>
-                        <ul class="journey-highlights">
-                            <li>Atendimento a passageiros e tripulação internacional diversa</li>
-                            <li>Organização de mesas e "Mise en Place" em restaurante premium</li>
-                            <li>Gestão de sistema de pedidos de cozinha e bar integrado</li>
+                            <li><strong>JSP Refrigeração</strong> - <span data-translate="journey_freelance_li1">Site institucional desenvolvido em 30 dias (Set 2025)</span></li>
+                            <li><strong>Gisele Cacau Turismo</strong> - <span data-translate="journey_freelance_li2">Site profissional entregue em 3 semanas (Jun 2025)</span></li>
+                            <li><strong>Lessa Carretos</strong> - <span data-translate="journey_freelance_li3">Site profissional entregue em 07 dias (Set 2026)</span></li>
+                            <li data-translate="journey_freelance_li4">Gestão completa de projetos desde briefing até deploy</li>
                         </ul>
                     </div>
 
@@ -553,172 +563,317 @@
             </section>
 
             <section id="formacao">
-                <h2>Formação & Cursos</h2>
+                <h2 data-translate="education_title">Formação & Cursos</h2>
                 
                 <div class="journey-timeline">
                     <div class="journey-item education fade-in">
                         <div class="journey-header">
                             <i class="fas fa-graduation-cap journey-icon"></i>
-                            <h3 class="journey-title">Tecnólogo em Análise e Desenvolvimento de Sistemas</h3>
+                            <h3 class="journey-title" data-translate="education_degree">Tecnólogo em Análise e Desenvolvimento de Sistemas</h3>
                             <span class="journey-period">2024 - 2026</span>
                         </div>
-                        <p class="journey-company">Centro Universitário Unifatecie (EAD)</p>
-                        <p class="journey-description">Formação superior em tecnologia com foco em desenvolvimento de software, banco de dados, engenharia de software e gestão de projetos.</p>
+                        <p class="journey-company" data-translate="company_university">Centro Universitário Unifatecie (EAD)</p>
+                        <p class="journey-description" data-translate="education_degree_desc">Formação superior em tecnologia com foco em desenvolvimento de software, banco de dados, engenharia de software e gestão de projetos.</p>
                         <ul class="journey-highlights">
-                            <li>Início: 15/01/2024 | Término: 15/01/2026</li>
-                            <li>Modalidade EAD com flexibilidade de horários</li>
-                            <li>Foco em desenvolvimento full-stack e metodologias ágeis</li>
+                            <li data-translate="education_degree_li1">Início: 15/01/2024 | Término: 15/01/2026</li>
+                            <li data-translate="education_degree_li2">Modalidade EAD com flexibilidade de horários</li>
+                            <li data-translate="education_degree_li3">Foco em desenvolvimento full-stack, arquitetura de Banco de Dados e metodologias ágeis</li>
                         </ul>
                     </div>
 
                     <div class="journey-item education fade-in">
                         <div class="journey-header">
                             <i class="fas fa-laptop-code journey-icon"></i>
-                            <h3 class="journey-title">Bootcamp Santander Open Academy</h3>
+                            <h3 class="journey-title" data-translate="education_bootcamp">Bootcamp Santander Open Academy</h3>
                             <span class="journey-period">Abr 2024 - Ago 2024</span>
                         </div>
-                        <p class="journey-company">Backend com Java - Plataforma DIO</p>
-                        <p class="journey-description">Programa intensivo de especialização em desenvolvimento backend com Java, Spring Boot e arquitetura de software.</p>
+                        <p class="journey-company" data-translate="course_platform">Backend com Java - Plataforma DIO</p>
+                        <p class="journey-description" data-translate="education_bootcamp_desc">Programa intensivo de especialização em desenvolvimento backend com Java, Spring Boot e arquitetura de software.</p>
                         <ul class="journey-highlights">
-                            <li>Desenvolvimento backend com Java e Spring Framework</li>
-                            <li>Arquitetura de microserviços e APIs REST</li>
-                            <li>Banco de dados SQL e NoSQL</li>
+                            <li data-translate="education_bootcamp_li1">Desenvolvimento backend com Java e Spring Framework</li>
+                            <li data-translate="education_bootcamp_li2">Arquitetura de microserviços e APIs REST</li>
+                            <li data-translate="education_bootcamp_li3">Banco de Dados SQL e NoSQL</li>
                         </ul>
                     </div>
 
                     <div class="journey-item language fade-in">
                         <div class="journey-header">
                             <i class="fas fa-language journey-icon"></i>
-                            <h3 class="journey-title">Inglês - Intermediário/Avançado</h3>
+                            <h3 class="journey-title" data-translate="education_english">Inglês - Intermediário/Avançado</h3>
                             <span class="journey-period">2004 - 2007</span>
                         </div>
                         <p class="journey-company">USA International Cursos e Intercâmbios - Suzano</p>
-                        <p class="journey-description">Curso formal de inglês com duração de 3 anos, focado em conversação, escrita e compreensão auditiva.</p>
+                        <p class="journey-description" data-translate="education_english_desc">Curso formal de inglês com duração de 3 anos, focado em conversação, escrita e compreensão auditiva.</p>
                     </div>
                 </div>
 
-                <h3 style="text-align: center; margin: 50px 0 30px; color: var(--accent-color);">🎓 Cursos Extracurriculares em Andamento</h3>
+                <h3 style="text-align: center; margin: 50px 0 30px; color: var(--accent-color);" data-translate="education_courses">🎓 Cursos Extracurriculares em Andamento</h3>
                 <div class="courses-grid">
                     <div class="course-category fade-in">
                         <h4>🔄 Plataforma DIO</h4>
                         <ul class="course-list">
                             <li>Java</li>
-                            <li>Versionamento de Código com Git e Github</li>
+                            <li data-translate="course_git">Versionamento de Código com Git e Github</li>
                             <li>Amazon Bedrock</li>
                             <li>AWS (Amazon Web Services)</li>
-                            <li>Inteligência Artificial</li>
+                            <li data-translate="course_ai">Inteligência Artificial</li>
+                            <li>C# e .NET</li>
                         </ul>
                     </div>
 
                     <div class="course-category fade-in">
                         <h4>🔄 Udemy</h4>
                         <ul class="course-list">
-                            <li>HTML5 Completo</li>
-                            <li>CSS3 Avançado</li>
-                            <li>JavaScript Moderno</li>
-                            <li>Desenvolvimento Front-End</li>
+                            <li data-translate="course_html">HTML5 Completo</li>
+                            <li data-translate="course_css">CSS3 Avançado</li>
+                            <li data-translate="course_js">JavaScript Moderno</li>
+                            <li data-translate="course_frontend">Desenvolvimento Front-End</li>
+                            <li>Banco de Dados SQL (MySQL e PostgreSQL)</li>
+                            <li>C# Completo (POO e MonoGame)</li>
                         </ul>
                     </div>
-
                     <div class="course-category fade-in">
                         <h4>🚀 Tecnologias em Estudo</h4>
                         <ul class="course-list">
                             <li>Python para Data Science</li>
-                            <li>Inteligência Artificial Generativa</li>
+                            <li data-translate="course_generative">Inteligência Artificial Generativa</li>
                             <li>Cloud Computing (AWS)</li>
                             <li>React.js & Vue.js</li>
                             <li>TypeScript</li>
+                            <li>C# e .NET</li>
+                            <li>Banco de Dados SQL (MySQL / PostgreSQL)</li>
                         </ul>
                     </div>
                 </div>
             </section>
 
             <section id="habilidades">
-                <h2>Habilidades & Competências</h2>
+                <h2 data-translate="skills_title">Habilidades & Competências</h2>
                 <div class="skills-container">
                     <div class="skill-item fade-in">
                         <i class="fab fa-html5"></i>
                         <p>HTML5</p>
-                        <small>Semântico & Acessível</small>
+                        <small data-translate="skill_html">Semântico & Acessível</small>
                     </div>
                     <div class="skill-item fade-in">
                         <i class="fab fa-css3-alt"></i>
                         <p>CSS3</p>
-                        <small>Flexbox & Grid</small>
+                        <small data-translate="skill_css">Flexbox & Grid</small>
                     </div>
                     <div class="skill-item fade-in">
                         <i class="fab fa-js-square"></i>
                         <p>JavaScript</p>
-                        <small>ES6+ & DOM</small>
+                        <small data-translate="skill_js">ES6+ & DOM</small>
                     </div>
                     <div class="skill-item fade-in">
                         <i class="fas fa-gamepad"></i>
-                        <p>Game Dev</p>
-                        <small>HTML5 Canvas</small>
+                        <p data-translate="skill_game">Game Dev</p>
+                        <small>Canvas & MonoGame</small>
+                    </div>
+                    <div class="skill-item fade-in">
+                        <i class="fas fa-hashtag"></i>
+                        <p>C#</p>
+                        <small>.NET & POO</small>
+                    </div>
+                    <div class="skill-item fade-in">
+                        <i class="fas fa-database"></i>
+                        <p>Banco de Dados</p>
+                        <small>SQL & NoSQL</small>
                     </div>
                     <div class="skill-item fade-in">
                         <i class="fab fa-python"></i>
                         <p>Python</p>
-                        <small>Data Science & IA</small>
+                        <small data-translate="skill_python">Data Science & IA</small>
                     </div>
                     <div class="skill-item fade-in">
                         <i class="fab fa-java"></i>
                         <p>Java</p>
-                        <small>Backend & Spring</small>
+                        <small data-translate="skill_java">Backend & Spring</small>
                     </div>
                     <div class="skill-item fade-in">
                         <i class="fas fa-robot"></i>
-                        <p>IA Generativa</p>
+                        <p data-translate="skill_ai">IA Generativa</p>
                         <small>Amazon Bedrock</small>
                     </div>
                     <div class="skill-item fade-in">
                         <i class="fab fa-git-alt"></i>
                         <p>Git</p>
-                        <small>Versionamento</small>
+                        <small data-translate="skill_git">Versionamento</small>
                     </div>
                     <div class="skill-item fade-in">
                         <i class="fas fa-language"></i>
-                        <p>Inglês</p>
-                        <small>Intermediário/Avançado</small>
+                        <p data-translate="skill_english">Inglês</p>
+                        <small data-translate="skill_english_level">Intermediário/Avançado</small>
                     </div>
                 </div>
             </section>
 
             <section id="contato">
-                <h2>Contato</h2>
-                <p style="text-align: center; margin-bottom: 30px;">Entre em contato comigo através das seguintes plataformas:</p>
+                <h2 data-translate="contact_title">Contato</h2>
+                <p style="text-align: center; margin-bottom: 30px;" data-translate="contact_subtitle">Entre em contato comigo através das seguintes plataformas:</p>
                 <div class="contact-info">
                     <div class="contact-item fade-in">
                         <i class="fas fa-envelope"></i>
-                        <h3>Email</h3>
+                        <h3 data-translate="contact_email">Email</h3>
                         <a href="mailto:markriqueza@gmail.com">markriqueza@gmail.com</a>
                     </div>
                     <div class="contact-item fade-in">
                         <i class="fab fa-linkedin"></i>
                         <h3>LinkedIn</h3>
-                        <a href="https://www.linkedin.com/in/marcosrobertodevtech/" target="_blank" rel="noopener noreferrer">linkedin.com/in/marcosrobertodevtech</a>
+                        <a href="https://www.linkedin.com/in/marcosrobertodevtech/" target="_blank" rel="noopener noreferrer" style="font-size: 0.95rem; word-break: break-all;">Meu Perfil</a>
                     </div>
                     <div class="contact-item fade-in">
                         <i class="fab fa-github"></i>
                         <h3>GitHub</h3>
-                        <a href="https://github.com/MarcosRiqueza" target="_blank" rel="noopener noreferrer">github.com/MarcosRiqueza</a>
+                        <a href="https://github.com/MarcosRiqueza" target="_blank" rel="noopener noreferrer" style="font-size: 0.95rem; word-break: break-all;">MarcosRiqueza</a>
                     </div>
                     <div class="contact-item fade-in">
                         <i class="fab fa-whatsapp"></i>
                         <h3>WhatsApp</h3>
-                        <a href="https://wa.me/5511915696867" target="_blank" rel="noopener noreferrer">+55 11 91569-6867</a>
+                        <a href="https://wa.me/5511915696867" target="_blank" rel="noopener noreferrer" style="font-size: 0.95rem;">+55 11 91569-6867</a>
                     </div>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>&copy; 2026 Marcos Roberto da Silva - Desenvolvedor Web</p>
-            <p style="margin-top: 10px; opacity: 0.7; font-size: 0.8rem;">Desenvolvido com dedicação e paixão por tecnologia.</p>
+            <p>&copy; 2026 Marcos Roberto da Silva - <span data-translate="footer_role">Desenvolvedor Web</span></p>
+            <p style="margin-top: 10px; opacity: 0.7; font-size: 0.8rem;" data-translate="footer_developed">Desenvolvido com dedicação e paixão por tecnologia.</p>
         </footer>
     </div>
 
     <script>
+        // Sistema de Tradução
+        const translations = {
+            pt: {
+                "nav_about": "Sobre", "nav_projects": "Projetos", "nav_journey": "Minha Jornada", "nav_education": "Formação", "nav_skills": "Habilidades", "nav_contact": "Contato",
+                "header_subtitle": "Desenvolvedor Web & Full-Stack",
+                "about_title": "Sobre Mim",
+                "about_p1": "Olá! Sou um desenvolvedor Web e Full-Stack em transição de carreira, com mais de 15 anos de experiência em hotelaria internacional, aeroportos e navios de cruzeiro.",
+                "about_p2": "Com inglês intermediário/avançado adquirido em curso formal de 3 anos e comprovado em experiências internacionais, combino expertise técnica em HTML, CSS, JavaScript, Python, Java, C#, Banco de Dados SQL e Inteligência Artificial com soft skills desenvolvidas em ambientes de alto padrão internacional.",
+                "about_p3": "Minha jornada me proporcionou habilidades únicas em atendimento ao cliente, trabalho sob pressão e adaptabilidade multicultural, que agora aplico no desenvolvimento de soluções web e de software inovadoras.",
+                "projects_title": "Meus Projetos", "projects_completed": "🚀 Projetos Concluídos & Entregues",
+                "badge_completed": "CONCLUÍDO", "badge_delivered": "ENTREGUE", "type_personal": "Projeto Pessoal", "type_client": "Cliente Real",
+                "meta_continuous": "Desenvolvimento Contínuo", "meta_gisele": "Jun 2025 • 3 semanas", "meta_jsp": "Set 2025 • 30 dias", "meta_xadrez": "Lógica e IA", "meta_seaquest": "Game Dev", "meta_lessa": "Set 2026 • 07 dias", "meta_game_csharp": "Game Dev / C#",
+                "desc_creatures": "Jogo de plataforma 2D com temática de terror. Desenvolvido do zero usando C# (MonoGame) para a lógica de física, colisão, inteligência artificial dos inimigos e sistema de áudio. Inclui uma demo jogável em vídeo.",
+                "desc_gisele": "Site institucional profissional para guia de turismo e recreacionista. Design elegante com foco em conversão e apresentação de serviços turísticos personalizados.",
+                "desc_jsp": "Landing page profissional para empresa de assistência técnica em refrigeração. Foco em captação de clientes locais com design clean e call-to-action estratégico.",
+                "desc_xadrez": "Jogo de xadrez completo jogável no navegador. Conta com modo Player vs Player (PvP), modo Player vs Máquina (PvE) com níveis de dificuldade e histórico de partidas.",
+                "desc_seaquest": "Jogo de ação subaquática 2D desenvolvido com HTML5 Canvas. Inclui sistema de física, colisão, partículas de explosão, HUD de pontuação e 10 níveis com dificuldade progressiva.",
+                "desc_lessa": "Página completa para prestação de serviços de transporte e fretes. Interface moderna focada em conversão de clientes e apresentação de serviços locais.",
+                "inst_xadrez": "<strong>💡 Como Jogar:</strong><br>Use apenas o <strong>mouse</strong> para clicar nas peças e movê-las. No menu lateral esquerdo, você pode escolher entre <strong>2 Jogadores (PvP)</strong> ou <strong>Vs Máquina (PvE)</strong>.",
+                "inst_seaquest": "<strong>💡 Como Jogar:</strong><br>Use as <strong>Setas (↑ ↓ ← →)</strong> para mover o submarino e a tecla <strong>ESPAÇO</strong> para atirar nos inimigos.",
+                "btn_live": "Site Online", "btn_code": "Código GitHub", "btn_play": "Jogar Agora",
+                "journey_title": "Minha Jornada Profissional",
+                "journey_dev": "Desenvolvedor Web & Full-Stack", "journey_dev_desc": "Atuação como desenvolvedor com foco em criar experiências web modernas, APIs backend e lógica de jogos, sempre com excelente performance.",
+                "journey_dev_li1": "Desenvolvimento de aplicações web com HTML5, CSS3 e JavaScript", "journey_dev_li2": "Desenvolvimento backend e games utilizando C#, Python, Java e Banco de Dados SQL", "journey_dev_li3": "Criação de interfaces responsivas e focadas na experiência do usuário", "journey_dev_li4": "Versionamento de código com Git e deploy em plataformas cloud",
+                "journey_freelance": "Primeiros Clientes Freelance", "journey_freelance_desc": "Início da carreira como desenvolvedor freelance com projetos reais para clientes, entregando soluções web profissionais.",
+                "journey_freelance_li1": "Site institucional desenvolvido em 30 dias (Set 2025)", "journey_freelance_li2": "Site profissional entregue em 3 semanas (Jun 2025)", "journey_freelance_li3": "Site profissional entregue em 07 dias (Set 2026)", "journey_freelance_li4": "Gestão completa de projetos desde briefing até deploy",
+                "education_title": "Formação & Cursos", "education_courses": "🎓 Cursos Extracurriculares em Andamento",
+                "education_degree": "Tecnólogo em Análise e Desenvolvimento de Sistemas", "education_degree_desc": "Formação superior em tecnologia com foco em desenvolvimento de software, banco de dados, engenharia de software e gestão de projetos.",
+                "education_degree_li1": "Início: 15/01/2024 | Término: 15/01/2026", "education_degree_li2": "Modalidade EAD com flexibilidade de horários", "education_degree_li3": "Foco em desenvolvimento full-stack, arquitetura de Banco de Dados e metodologias ágeis",
+                "education_bootcamp": "Bootcamp Santander Open Academy", "education_bootcamp_desc": "Programa intensivo de especialização em desenvolvimento backend com Java, Spring Boot e arquitetura de software.",
+                "education_bootcamp_li1": "Desenvolvimento backend com Java e Spring Framework", "education_bootcamp_li2": "Arquitetura de microserviços e APIs REST", "education_bootcamp_li3": "Banco de Dados SQL e NoSQL",
+                "education_english": "Inglês - Intermediário/Avançado", "education_english_desc": "Curso formal de inglês com duração de 3 anos, focado em conversação, escrita e compreensão auditiva.",
+                "company_university": "Centro Universitário Unifatecie (EAD)", "course_platform": "Backend com Java - Plataforma DIO",
+                "course_git": "Versionamento de Código com Git e Github", "course_ai": "Inteligência Artificial", "course_html": "HTML5 Completo", "course_css": "CSS3 Avançado", "course_js": "JavaScript Moderno", "course_frontend": "Desenvolvimento Front-End", "course_generative": "Inteligência Artificial Generativa",
+                "skills_title": "Habilidades & Competências", "skill_html": "Semântico & Acessível", "skill_css": "Flexbox & Grid", "skill_js": "ES6+ & DOM", "skill_game": "Game Dev", "skill_python": "Data Science & IA", "skill_java": "Backend & Spring", "skill_ai": "IA Generativa", "skill_git": "Versionamento", "skill_english": "Inglês", "skill_english_level": "Intermediário/Avançado",
+                "contact_title": "Contato", "contact_subtitle": "Entre em contato comigo através das seguintes plataformas:", "contact_email": "Email",
+                "footer_role": "Desenvolvedor Web", "footer_developed": "Desenvolvido com dedicação e paixão por tecnologia."
+            },
+            en: {
+                "nav_about": "About", "nav_projects": "Projects", "nav_journey": "My Journey", "nav_education": "Education", "nav_skills": "Skills", "nav_contact": "Contact",
+                "header_subtitle": "Web & Full-Stack Developer",
+                "about_title": "About Me",
+                "about_p1": "Hello! I'm a Web and Full-Stack Developer transitioning careers, with over 15 years of experience in international hospitality, airports, and cruise ships.",
+                "about_p2": "With intermediate/advanced English acquired through a 3-year formal course and proven in international experiences, I combine technical expertise in HTML, CSS, JavaScript, Python, Java, C#, SQL Databases, and AI with soft skills developed in high-standard international environments.",
+                "about_p3": "My journey has provided me with unique skills in customer service, working under pressure, and multicultural adaptability, which I now apply in developing innovative web and software solutions.",
+                "projects_title": "My Projects", "projects_completed": "🚀 Completed & Delivered Projects",
+                "badge_completed": "COMPLETED", "badge_delivered": "DELIVERED", "type_personal": "Personal Project", "type_client": "Real Client",
+                "meta_continuous": "Continuous Development", "meta_gisele": "Jun 2025 • 3 weeks", "meta_jsp": "Sep 2025 • 30 days", "meta_xadrez": "Logic and AI", "meta_seaquest": "Game Dev", "meta_lessa": "Sep 2026 • 07 days", "meta_game_csharp": "Game Dev / C#",
+                "desc_creatures": "2D platformer game with a horror theme. Built from scratch using C# (MonoGame) for physics, collision, enemy AI, and audio systems. Includes a playable video demo.",
+                "desc_gisele": "Professional institutional website for tourism guide. Elegant design focused on conversion and presentation of personalized tourism services.",
+                "desc_jsp": "Professional landing page for refrigeration technical assistance company. Focus on local customer acquisition with clean design and strategic call-to-action.",
+                "desc_xadrez": "Complete chess game playable in the browser. Features Player vs Player (PvP) mode, Player vs Machine (PvE) with difficulty levels, and match history.",
+                "desc_seaquest": "2D underwater action game developed with HTML5 Canvas. Includes physics, collision, explosion particles, score HUD, and 10 levels with progressive difficulty.",
+                "desc_lessa": "Complete page for transport and freight services. Modern interface focused on customer conversion and presentation of local services.",
+                "inst_xadrez": "<strong>💡 How to Play:</strong><br>Use only the <strong>mouse</strong> to click and move the pieces. In the left side menu, you can choose between <strong>2 Players (PvP)</strong> or <strong>Vs Machine (PvE)</strong>.",
+                "inst_seaquest": "<strong>💡 How to Play:</strong><br>Use the <strong>Arrows (↑ ↓ ← →)</strong> to move the submarine and the <strong>SPACE</strong> key to shoot at enemies.",
+                "btn_live": "Live Site", "btn_code": "GitHub Code", "btn_play": "Play Now",
+                "journey_title": "My Professional Journey",
+                "journey_dev": "Web & Full-Stack Developer", "journey_dev_desc": "Working as a developer focused on creating modern web experiences, backend APIs, and game logic, always with excellent performance.",
+                "journey_dev_li1": "Web application development with HTML5, CSS3 and JavaScript", "journey_dev_li2": "Backend and game development using C#, Python, Java, and SQL Databases", "journey_dev_li3": "Creating responsive interfaces focused on user experience", "journey_dev_li4": "Code versioning with Git and deployment on cloud platforms",
+                "journey_freelance": "First Freelance Clients", "journey_freelance_desc": "Beginning of career as freelance developer with real projects for clients, delivering professional web solutions.",
+                "journey_freelance_li1": "Institutional website developed in 30 days (Sep 2025)", "journey_freelance_li2": "Professional website delivered in 3 weeks (Jun 2025)", "journey_freelance_li3": "Professional website delivered in 07 days (Sep 2026)", "journey_freelance_li4": "Complete project management from briefing to deployment",
+                "education_title": "Education & Courses", "education_courses": "🎓 Extracurricular Courses in Progress",
+                "education_degree": "Technology in Systems Analysis and Development", "education_degree_desc": "Higher education in technology focused on software development, databases, software engineering and project management.",
+                "education_degree_li1": "Start: 01/15/2024 | End: 01/15/2026", "education_degree_li2": "EAD modality with flexible schedules", "education_degree_li3": "Focus on full-stack development, Database architecture, and agile methodologies",
+                "education_bootcamp": "Santander Open Academy Bootcamp", "education_bootcamp_desc": "Intensive specialization program in backend development with Java, Spring Boot and software architecture.",
+                "education_bootcamp_li1": "Backend development with Java and Spring Framework", "education_bootcamp_li2": "Microservices architecture and REST APIs", "education_bootcamp_li3": "SQL and NoSQL databases",
+                "education_english": "English - Intermediate/Advanced", "education_english_desc": "Formal English course lasting 3 years, focused on conversation, writing and listening comprehension.",
+                "company_university": "Unifatecie University Center (EAD)", "course_platform": "Backend with Java - DIO Platform",
+                "course_git": "Code Versioning with Git and Github", "course_ai": "Artificial Intelligence", "course_html": "Complete HTML5", "course_css": "Advanced CSS3", "course_js": "Modern JavaScript", "course_frontend": "Front-End Development", "course_generative": "Generative Artificial Intelligence",
+                "skills_title": "Skills & Competencies", "skill_html": "Semantic & Accessible", "skill_css": "Flexbox & Grid", "skill_js": "ES6+ & DOM", "skill_game": "Game Dev", "skill_python": "Data Science & AI", "skill_java": "Backend & Spring", "skill_ai": "Generative AI", "skill_git": "Versioning", "skill_english": "English", "skill_english_level": "Intermediate/Advanced",
+                "contact_title": "Contact", "contact_subtitle": "Get in touch with me through the following platforms:", "contact_email": "Email",
+                "footer_role": "Web Developer", "footer_developed": "Developed with dedication and passion for technology."
+            },
+            es: {
+                "nav_about": "Sobre", "nav_projects": "Proyectos", "nav_journey": "Mi Trayectoria", "nav_education": "Formación", "nav_skills": "Habilidades", "nav_contact": "Contacto",
+                "header_subtitle": "Desarrollador Web y Full-Stack",
+                "about_title": "Sobre Mí",
+                "about_p1": "¡Hola! Soy un desarrollador Web y Full-Stack en transición de carrera, con más de 15 años de experiencia en hotelería internacional, aeropuertos y cruceros.",
+                "about_p2": "Con inglés intermedio/avanzado adquirido en un curso formal de 3 años y comprobado en experiencias internacionales, combino experiencia técnica en HTML, CSS, JavaScript, Python, Java, C#, Bases de Datos SQL e IA con habilidades blandas desarrolladas en entornos internacionales de alto estándar.",
+                "about_p3": "Mi trayectoria me ha proporcionado habilidades únicas en atención al cliente, trabajo bajo presión y adaptabilidad multicultural, que ahora aplico en el desarrollo de soluciones web y de software innovadoras.",
+                "projects_title": "Mis Proyectos", "projects_completed": "🚀 Proyectos Completados & Entregados",
+                "badge_completed": "COMPLETADO", "badge_delivered": "ENTREGADO", "type_personal": "Proyecto Personal", "type_client": "Cliente Real",
+                "meta_continuous": "Desarrollo Continuo", "meta_gisele": "Jun 2025 • 3 semanas", "meta_jsp": "Sep 2025 • 30 días", "meta_xadrez": "Lógica e IA", "meta_seaquest": "Game Dev", "meta_lessa": "Sep 2026 • 07 días", "meta_game_csharp": "Game Dev / C#",
+                "desc_creatures": "Juego de plataformas 2D con temática de terror. Desarrollado desde cero usando C# (MonoGame) para la lógica de física, colisión, inteligencia artificial de los enemigos y sistema de audio. Incluye una demo jugable en video.",
+                "desc_gisele": "Sitio web institucional profesional para guía de turismo. Diseño elegante con enfoque en conversión y presentación de servicios turísticos personalizados.",
+                "desc_jsp": "Página de destino profesional para empresa de asistencia técnica en refrigeración. Enfoque en captación de clientes locales con diseño limpio y llamada a la acción estratégica.",
+                "desc_xadrez": "Juego de ajedrez completo jugable en el navegador. Cuenta con modo Jugador vs Jugador (PvP), modo Jugador vs Máquina (PvE) con niveles de dificultad e historial de partidas.",
+                "desc_seaquest": "Juego de acción submarina 2D desarrollado con HTML5 Canvas. Incluye sistema de física, colisión, partículas de explosión, HUD de puntuación y 10 niveles con dificultad progresiva.",
+                "desc_lessa": "Página completa para la prestación de servicios de transporte y fletes. Interfaz moderna enfocada en la conversión de clientes y presentación de servicios locales.",
+                "inst_xadrez": "<strong>💡 Cómo Jugar:</strong><br>Usa solo el <strong>ratón</strong> para hacer clic y mover las piezas. En el menú lateral izquierdo, puedes elegir entre <strong>2 Jugadores (PvP)</strong> o <strong>Vs Máquina (PvE)</strong>.",
+                "inst_seaquest": "<strong>💡 Cómo Jugar:</strong><br>Usa las <strong>Flechas (↑ ↓ ← →)</strong> para mover el submarino y la tecla <strong>ESPACIO</strong> para disparar a los enemigos.",
+                "btn_live": "Sitio Online", "btn_code": "Código GitHub", "btn_play": "Jugar Ahora",
+                "journey_title": "Mi Trayectoria Profesional",
+                "journey_dev": "Desarrollador Web y Full-Stack", "journey_dev_desc": "Actuación como desarrollador con enfoque en crear experiencias web modernas, APIs backend y lógica de juegos, siempre con excelente rendimiento.",
+                "journey_dev_li1": "Desarrollo de aplicaciones web con HTML5, CSS3 y JavaScript", "journey_dev_li2": "Desarrollo backend y juegos utilizando C#, Python, Java y Bases de Datos SQL", "journey_dev_li3": "Creación de interfaces responsivas y enfocadas en la experiencia del usuario", "journey_dev_li4": "Control de versiones de código con Git y despliegue en plataformas cloud",
+                "journey_freelance": "Primeros Clientes Freelance", "journey_freelance_desc": "Inicio de carrera como desarrollador freelance con proyectos reales para clientes, entregando soluciones web profesionales.",
+                "journey_freelance_li1": "Sitio web institucional desarrollado en 30 días (Sep 2025)", "journey_freelance_li2": "Sitio web profesional entregado en 3 semanas (Jun 2025)", "journey_freelance_li3": "Sitio web profesional entregado en 07 días (Sep 2026)", "journey_freelance_li4": "Gestión completa de proyectos desde briefing hasta despliegue",
+                "education_title": "Formación & Cursos", "education_courses": "🎓 Cursos Extracurriculares en Progreso",
+                "education_degree": "Tecnólogo en Análisis y Desarrollo de Sistemas", "education_degree_desc": "Formación superior en tecnología con enfoque en desarrollo de software, bases de datos, ingeniería de software y gestión de proyectos.",
+                "education_degree_li1": "Inicio: 15/01/2024 | Término: 15/01/2026", "education_degree_li2": "Modalidad EAD con flexibilidad de horarios", "education_degree_li3": "Enfoque en desarrollo full-stack, arquitectura de Bases de Datos y metodologías ágiles",
+                "education_bootcamp": "Bootcamp Santander Open Academy", "education_bootcamp_desc": "Programa intensivo de especialización en desarrollo backend con Java, Spring Boot y arquitectura de software.",
+                "education_bootcamp_li1": "Desarrollo backend con Java y Spring Framework", "education_bootcamp_li2": "Arquitectura de microservicios y APIs REST", "education_bootcamp_li3": "Bases de Datos SQL y NoSQL",
+                "education_english": "Inglés - Intermedio/Avanzado", "education_english_desc": "Curso formal de inglés con duración de 3 años, enfocado en conversación, escritura y comprensión auditiva.",
+                "company_university": "Centro Universitario Unifatecie (EAD)", "course_platform": "Backend con Java - Plataforma DIO",
+                "course_git": "Control de Versiones con Git y Github", "course_ai": "Inteligencia Artificial", "course_html": "HTML5 Completo", "course_css": "CSS3 Avanzado", "course_js": "JavaScript Moderno", "course_frontend": "Desarrollo Front-End", "course_generative": "Inteligencia Artificial Generativa",
+                "skills_title": "Habilidades & Competencias", "skill_html": "Semántico & Accesible", "skill_css": "Flexbox & Grid", "skill_js": "ES6+ & DOM", "skill_game": "Game Dev", "skill_python": "Data Science & IA", "skill_java": "Backend & Spring", "skill_ai": "IA Generativa", "skill_git": "Control de Versiones", "skill_english": "Inglés", "skill_english_level": "Intermedio/Avanzado",
+                "contact_title": "Contacto", "contact_subtitle": "Ponte en contacto conmigo a través de las siguientes plataformas:", "contact_email": "Email",
+                "footer_role": "Desarrollador Web", "footer_developed": "Desarrollado con dedicación y pasión por la tecnología."
+            }
+        };
+
+        function changeLanguage(lang) {
+            // Atualiza os botões ativos
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Atualiza os elementos com data-translate
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    // Se contiver HTML (como as instruções), usa innerHTML
+                    if (translations[lang][key].includes('<')) {
+                        el.innerHTML = translations[lang][key];
+                    } else {
+                        el.textContent = translations[lang][key];
+                    }
+                }
+            });
+        }
+
         // Animação de entrada (Fade-in)
         const fadeElements = document.querySelectorAll('.fade-in');
         const fadeInObserver = new IntersectionObserver((entries) => {
